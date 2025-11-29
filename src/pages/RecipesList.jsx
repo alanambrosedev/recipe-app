@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import recipesData from "../data/recipes.json";
+import RecipeCard from "../components/RecipeCard";
 
 export default function RecipesList() {
   const [recipes, setRecipes] = useState([]);
@@ -13,16 +14,12 @@ export default function RecipesList() {
       <h2>All Recipes</h2>
 
       {recipes.map((recipe) => (
-        <div key={recipe.id}>
-          <h3>{recipe.title}</h3>
-          <img src={recipe.image} alt={recipe.title} />
-          <p>Cook Time: {recipe.cookTime} mins</p>
-          <ul>
-            {recipe.ingredients.map((ing, index) => (
-              <li key={index}>{ing}</li>
-            ))}
-          </ul>
-        </div>
+        <RecipeCard
+          key={recipe.id}
+          title={recipe.title}
+          image={recipe.image}
+          ingredients={recipe.ingredients}
+        />
       ))}
     </div>
   );
